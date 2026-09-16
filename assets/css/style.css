@@ -143,3 +143,43 @@
   .about-context { grid-template-columns: minmax(0, 1fr); gap: 14px; }
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+/* ===== Responsive fixes ===== */
+html,body{max-width:100%;overflow-x:hidden}
+img{max-width:100%;height:auto}
+.site-header .brand{min-width:0}
+/* Round logo: fixed circular container, contained image, never distorted or cropped. */
+.brand-mark.brand-mark-logo{width:44px;height:44px;flex:none;border-radius:50%;overflow:hidden;padding:0}
+.brand-mark.brand-mark-logo .brand-logo{display:block;width:100%;height:100%;object-fit:contain}
+@media(max-width:1100px){.brand-mark.brand-mark-logo{width:42px;height:42px}}
+@media(max-width:650px){.brand-mark.brand-mark-logo{width:38px;height:38px}}
+@media(max-width:360px){.brand-mark.brand-mark-logo{width:36px;height:36px}}
+/* Hero promotional image: contained inside its card, never overflowing. */
+.people-art .hero-mockup{display:block;max-width:100%;height:auto;object-fit:contain;margin-inline:auto}
+/* Below 768px: single-column hero, image stacked below the copy. */
+@media(max-width:768px){
+  .hero-grid{grid-template-columns:1fr;gap:26px;padding-top:40px;padding-bottom:16px}
+}
+/* Tablet single-column hero (651-768px): contained art with room for decorative accents. */
+@media(min-width:651px) and (max-width:768px){
+  .hero-art{width:100%;max-width:460px;justify-self:center;height:420px;transform:none;margin-inline:0}
+  .illustration-card{width:min(280px,58vw)}
+  .orbit-outer{width:88%;height:360px}
+  .orbit-inner{width:74%;height:300px}
+  .tag-top{top:14px;left:12px;right:auto}
+  .tag-bottom{bottom:14px;right:12px;left:auto}
+  .hero-art .art-spark,.hero-art .art-dot{display:none}
+}
+/* Mobile hero decorations: keep the promotional image free of overlapping accents. */
+@media(max-width:650px){
+  .hero-art{height:340px}
+  .hero-art .art-spark{display:none}
+}
+/* Narrow screens: stack hero buttons full width for comfortable touch targets. */
+@media(max-width:360px){
+  .hero .button-row{flex-direction:column;align-items:stretch}
+  .hero .button-row .button{width:100%;justify-content:center}
+}
+/* Contact section: three balanced cards on desktop, two on tablet, stacked on mobile. */
+.contact-links{grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:1100px){.contact-links{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.contact-links{grid-template-columns:1fr;gap:12px}}
