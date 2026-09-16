@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Replace the example origin with the final HTTPS domain before publishing.
+Sitemap: https://kavyaclub.example/sitemap.xml
