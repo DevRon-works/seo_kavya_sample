@@ -51,3 +51,16 @@ if (menuButton && navigation) {
 document.querySelectorAll('[data-year]').forEach((element) => {
   element.textContent = String(new Date().getFullYear());
 });
+
+// A single entrance animation per About panel. Content is visible without JS,
+// when IntersectionObserver is unavailable, and when reduced motion is preferred.
+if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const aboutObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-revealed');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('#about .about-reveal').forEach((panel) => aboutObserver.observe(panel));
+}
